@@ -1,8 +1,6 @@
 "use client"
-import { motion } from "framer-motion"
 import React, {HtmlHTMLAttributes} from 'react';
-import {cn} from "@/lib/utils";
-import {varFade} from "@/components/animate";
+import {cn} from "../../lib/utils";
 
 interface Props extends HtmlHTMLAttributes<HTMLHeadingElement> {
     title: string;
@@ -10,10 +8,10 @@ interface Props extends HtmlHTMLAttributes<HTMLHeadingElement> {
 
 const SectionHeading = ({title, children, className}: Props) => {
     return (
-        <motion.div className={cn(className)} {...varFade().inDown}>
-            <h2 className="font-semibold text-2xl sm:text-3xl md:text-4xl leading-tight" {...varFade().inDown}> {title} </h2>
+        <div className={cn(className)} >
+            <h2 className="font-semibold text-2xl sm:text-3xl md:text-4xl leading-tight"> {title} </h2>
             {children}
-        </motion.div>
+        </div>
     );
 };
 {

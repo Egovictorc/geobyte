@@ -1,8 +1,5 @@
-"use client";
 import {Icon, IconifyIcon, IconProps} from "@iconify/react";
-import React from "react";
-import {cn} from "@/lib/utils";
-import {icons} from "lucide-react";
+import {cn} from "../../lib/utils";
 
 
 const Iconify = ({ icon, color, width, className, ...props }: IconProps) => {
