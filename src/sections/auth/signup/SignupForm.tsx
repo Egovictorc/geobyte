@@ -15,6 +15,10 @@ import { signup } from "../../../lib/handlers";
 const SignupForm = () => {
     const { enqueueSnackbar, closeSnackbar } = useSnackbar()
     const SignupSchema = Yup.object().shape({
+        firstName: Yup.string()
+        .required("First Name is required"),
+        lastName: Yup.string()
+        .required("Last Name is required"),
         email: Yup.string()
             .required("Email is required")
             .email("Email must be a valid email address"),
@@ -30,9 +34,14 @@ const SignupForm = () => {
     const defaultValues: {
         confirmPassword: string,
         email: string,
+        firstName: string,
+        lastName: string,
         password: string,
         afterSubmit?: string
     } = {
+        
+        firstName: "",
+        lastName: "",
         email: '',
         password: "",
         confirmPassword: "",
@@ -56,13 +65,19 @@ const SignupForm = () => {
         if (navigator.onLine) {
             try {
 
-                signup(values.email, values.password);
+                console.log("values ", values)
+                signup({ firstName: values.firstName,
+                        lastName: values.lastName,
+                        email: values.email,
+                        password: values.password
+                });
                 // enqueueSnackbar(message);
                 enqueueSnackbar('Account created successfully');
             }
             catch (error) {
                 const err = error as API_ERROR;
-
+                
+                console.log("errors ", error)
                 reset();
 
                 setError('afterSubmit', {
@@ -79,9 +94,11 @@ const SignupForm = () => {
 
     return (
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+            <RHFTextField name="firstName" label="First Name" placeholder={"john"} />
+            <RHFTextField name="lastName" label="Last Name" placeholder={"Doe"} />
             <RHFTextField name="email" label="Email address" placeholder={"johndoe@gmail.com"} />
             <RHFPasswordField name="password" label="Password" />
-            <RHFPasswordField name="´confirmPassword" label="Confirm Password" />
+            <RHFPasswordField name="confirmPassword" label="Confirm Password" />
             <div className="flex justify-between mb-4">
                 <div className="w-1/2">
                     <input type="checkbox" name="remeberMe" />&nbsp;

@@ -22,6 +22,7 @@ public class StaffServiceImpl implements StaffService{
 
     @Override
     public StaffDto save(Staff staff) {
+        LOGGER.info("Saving staff object to database");
         return staffRepository.save(staff).mapToDto();
     }
 

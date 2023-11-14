@@ -34,12 +34,11 @@ public class Staff {
 
     @Email(message = "Must be a valid email Address")
     private String email;
+
+    @NotNull(message = "Password must not be Null")
+    @NotBlank
     private String password;
 
-    @Min(value = 7, message = "Level must be greater than 6")
-    private int level;
-
-    private double salary;
     public StaffDto mapToDto() {
         StaffDto staffDto = new StaffDto();
         BeanUtils.copyProperties(this, staffDto);

@@ -13,4 +13,4 @@ type UserProps = {
     token?: string;
 } & SocialMediaProps
 
-type API_ERROR = { status: 'error'; message: string };
+export type API_ERROR = { status: 'error'; message: string };

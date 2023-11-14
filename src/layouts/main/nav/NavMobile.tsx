@@ -8,7 +8,7 @@ import navConfig from '../../config-navigation';
 
 const NavMobile = () => {
 
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
 
     const location = useLocation()
     useEffect(() => {
@@ -25,7 +25,7 @@ const NavMobile = () => {
     const handleClose = () => {
         setOpen(false);
     };
-    return (<div className="flex items-center justify-between">
+    return (<div className="flex items-center justify-between md:hidden">
         <div className={"flex-1"}>
             <Logo />
         </div>

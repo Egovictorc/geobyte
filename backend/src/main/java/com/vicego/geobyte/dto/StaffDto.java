@@ -7,6 +7,4 @@ public class StaffDto {
     private String firstName;
     private String lastName;
     private String email;
-    private int level;
-    private double salary;
 }

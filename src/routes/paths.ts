@@ -2,7 +2,7 @@ function path(root: string, sublink: string) {
     return `${root}${sublink}`;
 }
 
-const API_ROOT = `${import.meta.env.ROOT_URL}/api/v1`;
+const API_ROOT = `/api/v1`;
 
 export const PATH_AUTH = {
     root: "/auth",
@@ -26,9 +26,9 @@ export const PATH_API = {
         myAccount: path(API_ROOT, `/auth/my-account`),
         createAccount: path(API_ROOT, '/auth/create-account'),
     },
-    users: {
-        root: path(API_ROOT, '/users'),
-        user: (email: string) => path(API_ROOT, `/users/${email}`),
+    staff: {
+        root: path(API_ROOT, '/staff'),
+        get: (email: string) => path(API_ROOT, `/staff/${email}`),
 
     },
 

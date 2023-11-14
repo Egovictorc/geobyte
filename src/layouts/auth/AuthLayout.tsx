@@ -1,25 +1,21 @@
-import React, {ReactNode } from "react";
+import React, { ReactNode } from "react";
+import MainHeader from "../main/MainHeader";
 
 type Props = {
     children: ReactNode
 }
 
-const AuthLayout = ({children}: Props) => {
+const AuthLayout = ({ children }: Props) => {
     return (
-        <div className={"flex flex-col h-screen w-full text-primary-main"}>
-            {/* <MainHeader bg={"bg-primary-main/90"}/> */}
-            {/*
-              <header className={"flex w-full justify-between"}>
-                <Logo/>
-            </header>*/}
-            <main className={"w-full h-full flex justify-center items-center pt-20"}>
-                <div className={"flex flex-col w-full px-3 max-w-[500px] "}>
-                    {children}
-                </div>
+            
+        <div className="flex flex-col justify-center min-h-screen px-3 ">
+            <MainHeader />
+            <main className="flex-1 flex flex-col justify-center  my-auto  max-w-lg container">
+            {children}
             </main>
-            <footer className={'w-full h-20 bg-[url("assets/backgrounds/auth-bg.svg")]'}>
-                
-
+            
+        <footer className={'w-full h-20'}>
+                <span className={"block py-2 text-center"}>© {new Date().getFullYear()}. All rights reserved</span>
             </footer>
         </div>
     );

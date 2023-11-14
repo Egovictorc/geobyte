@@ -18,7 +18,7 @@ const RegisterPage = () => {
       </Helmet>
 
         <div className={"text-slate-800 "}>
-                <SectionHeading title={"Create Account"} className='mb-10' />
+                <SectionHeading title={"Create Account"} className='mb-4' />
             </div>
             <SignupForm/>
             <p className={"py-4 text-center text-sm"}>
