@@ -1,0 +1,68 @@
+Version 1.0
+GeoByte, Inc
+… Optimized Delivery
+General Requirement
+GeoByte Inc is a leading courier and logistics company with focus on safe and fast delivery of
+items to destinations across the globe.
+With recent global developments that have affected the ease and cost of moving packages
+across cities and countries, they want to optimize their delivery costs and speed of delivery in
+order to stay afloat.
+GeoByte Inc needs a software solution, accessible from their browsers where they can set up
+locations, select an origin and destination location and view the best route to take in delivering
+packages from the origin to the destination.
+Your Task
+You are to develop a simple web application that will allow any staff of GeoByte Inc
+➢ register (with name, email and password) or log in (with email and password)
+➢ View a list of delivery locations
+➢ Add | Remove | Update delivery locations (minimum of 3 locations must exist before
+deliveries can start)
+➢ Select any two different locations (origin and destination), and generate the optimal route
+to take in delivering a package, together with the cost of delivery. This is represented as
+a sequence of locations from origin to destination
+1
+Version 1.0
+Assumptions / Constraints:
+- All packages are same size and weight
+- Only 1 package can be delivered at a time
+- All locations where the package gets to, except the origin location incur a fixed clearing
+cost between $25 - $100 inclusive. The clearing cost of a location is defined when the
+location is being added
+- No location is visited more than once while delivering a package
+- The package must pass at least 1 intermediate location before getting to the final
+destination and at most 4
+- Cost per package per kilometer = $1.00
+- The total cost of delivery, C T is defined as
+C T = sum(C D ) + sum(C C ) ,
+Where:
+C D = Cost per kilometer * Total distance (in km) from origin to destination
+C C = Clearing cost per location visited, including the destination
+Tools / Technologies
+➢ The software should have a RESTful API backend written with Java/Spring and a
+frontend written with Angular 6 or higher
+➢ For persistence, use JPA and H2 database
+Bonus Points
+Bonus points for:
+● Also displaying the most expensive route and highest cost of delivery, given the
+assumptions and constraints specified in the earlier section
+● Test coverage: Unit and integration test coverage for both the frontend and backend.
+2
+Version 1.0
+Submission
+➢ Store your solution (both frontend and backend) in one private Github repository,
+appropriately named
+➢ Use the Issues section of your github repository and create ALL the tasks you performed
+in developing the software (this forms part of what will be assessed)
+➢ Specify in the readme of your repository how the application can be setup and run
+➢ Add bwcareersassessment@gmail.com as a collaborator
+➢ Submit by sending a mail to careers@byteworks.com.ng with the subject
+“Surname, Firstname - Software Developer Assessment Submission” and including a
+link to your code repository
+Duration:
+You have up to 5 days to complete and submit
+Assessment Criteria
+➢ Responsiveness: Usable from a mobile phone browser
+➢ Delivery planning: Clear list of tasks you planned and executed. We will check the
+“Issues” section of your repository for this
+➢ Clean Code: Elegant and maintainable source code
+➢ Correctness of Implementation: The software does what it says it does, correctly and
+respecting all constraints specified in the problem definition

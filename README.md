@@ -1,27 +1,37 @@
-# React + TypeScript + Vite
+# This guide will help you to setup the Geobyte application successfully
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+GeoByte Inc is a leading courier and logistics company with focus on safe and fast delivery of items to destinations across the globe.
+First, clone the project repository at [https://github.com/Egovictorc/geobyte](https://github.com/Egovictorc/geobyte)  
 
-Currently, two official plugins are available:
+To run the project in development environment, you need to start the development server for both frontend and backend
+## Frontend setup
+Navigate to Project directory
+```bash
+   cd geobyte
+```  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+Next Install Project (Frontend) dependencies
+```bash
+   pnpm install
 ```
+Next, start the (Frontend) development server:
+```bash
+   pnpm run dev
+```
+The frontend server runs on [http://localhost:5173](http://localhost:5173).
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Backend setup
+Navigate to Backend directory inside the Project directory
+```bash
+   cd geobyte/backend
+```  
+
+Next Install Project (Backend) dependencies
+```bash
+   pnpm install
+```
+Next, start the (Backend) development server:
+```bash
+   pnpm run dev
+```
+The backend server runs on [http://localhost:8000](http://localhost:8000).

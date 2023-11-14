@@ -1,7 +1,12 @@
+import MainLayout from "../layouts/main/MainLayout"
+import { HomeHeader, HomeServices } from "../sections/home"
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <MainLayout>
+      <HomeHeader />
+      <HomeServices />
+    </MainLayout>
   )
 }
 

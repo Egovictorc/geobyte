@@ -89,7 +89,7 @@ const LoginForm = () => {
                 </div>
 
                 <button
-                    className="w-full shadow flex justify-center items-center gap-x-2 text-center  hover:bg-primary-dark focus:shadow-outline focus:outline-none bg-primary-main text-white font-bold py-3 px-4 rounded"
+                    className="w-full shadow flex justify-center items-center gap-x-2 text-center  hover:bg-blue-500 focus:shadow-outline focus:outline-none bg-blue-600 text-white font-bold py-3 px-4 rounded transition-all"
                     type="submit"
                     disabled={isSubmitting}
                 >
