@@ -1,23 +1,23 @@
+import React, { useState } from "react"
+import type { API_ERROR } from '../../../../types';
 import * as Yup from 'yup';
-import {Link, redirect} from "react-router-dom";
+import { Link, redirect, Navigate} from "react-router-dom";
 
-import {SubmitHandler, useForm} from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/yup';
-import {useSnackbar} from "notistack";
-
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useSnackbar } from "notistack";
 
 // form
-import FormProvider, {RHFPasswordField, RHFTextField} from "../../../components/hook-form";
-import {PATH_AFTER_LOGIN, PATH_AUTH} from "../../../routes/paths";
-import {Iconify} from "../../../components/iconify";
-import axiosInstance from "@/utils/axiosInstance";
-import axios from "axios";
+import FormProvider, { RHFPasswordField, RHFTextField } from "../../../components/hook-form";
+import { PATH_AFTER_LOGIN, PATH_AUTH } from "../../../routes/paths";
+import { Iconify } from "../../../components/iconify";
 import { login } from '../../../lib/handlers';
 
 
 const LoginForm = () => {
 
-    const {enqueueSnackbar, closeSnackbar} = useSnackbar()
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar()
     const LoginSchema = Yup.object().shape({
         email: Yup.string()
             .required('Email is required')
@@ -44,43 +44,38 @@ const LoginForm = () => {
         setError,
         handleSubmit,
         watch,
-        formState: {errors, isSubmitting, isSubmitSuccessful},
+        formState: { errors, isSubmitting, isSubmitSuccessful },
     } = methods;
 
 
     const onSubmit: SubmitHandler<typeof defaultValues> = async (values) => {
-        if (navigator.onLine) {
-            try {
-
-                await login(values.email, values.password);
-                //console.log("data ", user)
-
-                // enqueueSnackbar(message);
+        login(values.email, values.password)
+            .then(res => {
                 enqueueSnackbar('login success');
-                redirect(PATH_AFTER_LOGIN)
-            } catch (error) {
+                setIsLoggedIn(true);
+            })
+            .catch((error) => {
                 const err = error as API_ERROR;
                 //reset();
                 setError('afterSubmit', {
                     ...err,
                     message: err.message,
                 });
-                enqueueSnackbar({message: err.message, variant: 'error'});
-            }
-        } else {
-            enqueueSnackbar({message: 'You are offline', variant: 'error'});
-        }
+                enqueueSnackbar({ message: err.message, variant: 'error' });
+            })
+        //console.log("data ", user)
+        // enqueueSnackbar(message);
     };
 
     return (
         <>
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-                {!!errors.afterSubmit && (<p className={"text-red-500"}>{errors.afterSubmit.message} </p>)}
-                <RHFTextField name="email" label="Email address" placeholder={"johndoe@gmail.com"}/>
-                <RHFPasswordField name="password" label="Password"/>
+                {!!errors.afterSubmit && (<p className={"text-red-500 mb-2"}>{errors.afterSubmit.message} </p>)}
+                <RHFTextField name="email" label="Email address" placeholder={"johndoe@gmail.com"} />
+                <RHFPasswordField name="password" label="Password" />
                 <div className="flex justify-between mb-4">
                     <div className="w-1/2 flex items-center">
-                        <input type="checkbox" name="remeberMe"/>&nbsp;
+                        <input type="checkbox" name="remeberMe" />&nbsp;
                         <label htmlFor="remeberMe">Remember me</label>
                     </div>
                     <div className="">
@@ -94,8 +89,10 @@ const LoginForm = () => {
                     disabled={isSubmitting}
                 >
                     {isSubmitting ? "Please wait..." : "Login"}
-                    {isSubmitting && <Iconify icon={"line-md:loading-twotone-loop"} width={20}/>}
+                    {isSubmitting && <Iconify icon={"line-md:loading-twotone-loop"} width={20} />}
                 </button>
+
+            { isLoggedIn && <Navigate to="/dashboard/locations" /> }
             </FormProvider>
         </>
     );

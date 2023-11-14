@@ -1,4 +1,4 @@
-"use client"
+import type { API_ERROR } from '../../../../types';
 import * as Yup from 'yup';
 
 // form
@@ -16,9 +16,9 @@ const SignupForm = () => {
     const { enqueueSnackbar, closeSnackbar } = useSnackbar()
     const SignupSchema = Yup.object().shape({
         firstName: Yup.string()
-        .required("First Name is required"),
+            .required("First Name is required"),
         lastName: Yup.string()
-        .required("Last Name is required"),
+            .required("Last Name is required"),
         email: Yup.string()
             .required("Email is required")
             .email("Email must be a valid email address"),
@@ -39,7 +39,7 @@ const SignupForm = () => {
         password: string,
         afterSubmit?: string
     } = {
-        
+
         firstName: "",
         lastName: "",
         email: '',
@@ -62,38 +62,32 @@ const SignupForm = () => {
     } = methods;
 
     const onSubmit: SubmitHandler<typeof defaultValues> = async (values) => {
-        if (navigator.onLine) {
-            try {
-
-                console.log("values ", values)
-                signup({ firstName: values.firstName,
-                        lastName: values.lastName,
-                        email: values.email,
-                        password: values.password
-                });
-                // enqueueSnackbar(message);
-                enqueueSnackbar('Account created successfully');
-            }
-            catch (error) {
+        console.log("values ", values)
+        signup({
+            firstName: values.firstName,
+            lastName: values.lastName,
+            email: values.email,
+            password: values.password,
+            role: "STAFF"
+        })
+            .catch((error) => {
                 const err = error as API_ERROR;
-                
                 console.log("errors ", error)
-                reset();
-
+                // reset();
                 setError('afterSubmit', {
                     ...err,
                     message: err.message,
                 });
                 enqueueSnackbar({ message: err.message, variant: 'error' });
-            }
-        }
-        else {
-            enqueueSnackbar({ message: 'You are offline', variant: 'error' });
-        }
+            });
+        // enqueueSnackbar(message);
+        enqueueSnackbar('Account created successfully');
+
     };
 
     return (
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+            {!!errors.afterSubmit && (<p className={"text-red-500 mb-2"}>{errors.afterSubmit.message} </p>)}
             <RHFTextField name="firstName" label="First Name" placeholder={"john"} />
             <RHFTextField name="lastName" label="Last Name" placeholder={"Doe"} />
             <RHFTextField name="email" label="Email address" placeholder={"johndoe@gmail.com"} />

@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({
-            StaffNotFoundException.class
+            UserNotFoundException.class
     })
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<ErrorMessage> customNotFoundException(Exception e, WebRequest request) {
@@ -21,7 +21,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     }
 
     @ExceptionHandler({
-            StaffAlreadyExistException.class
+            UserAlreadyExistException.class
     })
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorMessage> customAlreadyExistdException(Exception e, WebRequest request) {

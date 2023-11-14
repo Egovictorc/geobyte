@@ -1,17 +1,19 @@
 package com.vicego.geobyte.models;
 
-import com.vicego.geobyte.dto.StaffDto;
+import com.vicego.geobyte.dto.UserDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.annotation.CreatedDate;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "users")
 @Table
 @Builder
 @NoArgsConstructor
@@ -19,7 +21,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
-public class Staff {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -39,8 +41,14 @@ public class Staff {
     @NotBlank
     private String password;
 
-    public StaffDto mapToDto() {
-        StaffDto staffDto = new StaffDto();
+    @NotNull(message = "Role must not be Null")
+    private String role;
+
+    @CreationTimestamp
+    private LocalDate date_created;
+
+    public UserDto mapToDto() {
+        UserDto staffDto = new UserDto();
         BeanUtils.copyProperties(this, staffDto);
         return staffDto;
     }

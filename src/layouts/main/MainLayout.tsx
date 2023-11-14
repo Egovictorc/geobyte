@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import MainFooter from './MainFooter'
 import MainHeader from './MainHeader'
 
-const ManiLayout = ({ children }: { children: ReactNode }) => {
+const MainLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <MainHeader />
@@ -12,4 +12,4 @@ const ManiLayout = ({ children }: { children: ReactNode }) => {
   )
 }
 
-export default ManiLayout
+export default MainLayout

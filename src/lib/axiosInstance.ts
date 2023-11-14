@@ -11,8 +11,9 @@ const axiosInstance = axios.create({
 //add a response interceptor
 axiosInstance.interceptors.response.use((response) => response,
     (error) => {
-    console.log("axios error ", error.toJSON())
-    return Promise.reject({message: error.message || (error.response && error.response.data) })
+    // console.log("axios error ", error.toJSON())
+    return Promise.reject(error.response && error.response.data)
+    // return Promise.reject({message: error.response && error.response.data })
     }
 )
 export default  axiosInstance;

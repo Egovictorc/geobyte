@@ -5,7 +5,6 @@ import {Link} from "react-router-dom";
 
 import {PATH_AUTH, PATH_PAGE} from "../../routes/paths";
 import {Button, buttonVariants} from "../../components/ui/button";
-import homeHeroImage from "/public/assets/images/home/home_hero.png";
 
 
 const HomeHeader = () => {
@@ -48,7 +47,7 @@ const HomeHeader = () => {
             </div>
             <div className="hidden md:flex relative basis-3/5 w-full h-[450px] lg:h-[900px] self-center">
                 <LazyLoadImage height={450} 
-                    src={homeHeroImage}
+                    src={"/assets/images/home/home_hero.png"}
                     alt="Home hero"
                     className="object-contain"
                     />

@@ -9,6 +9,8 @@ import {
 
 import { HomePage } from "./pages"
 import { SignupPage, LoginPage } from "./pages/auth"
+import { PATH_AFTER_LOGIN } from "./routes/paths";
+import DeliveryLocations from "./pages/dashboard/Locations";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "auth/login",
     element: <LoginPage />
+  },
+  {
+    path: "/dashboard/locations",
+    element: <DeliveryLocations />
   },
 ]);
 

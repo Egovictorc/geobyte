@@ -28,10 +28,7 @@ Navigate to Backend directory inside the Project directory
 
 Next Install Project (Backend) dependencies
 ```bash
-   pnpm install
+   mvn spring-boot:run
 ```
-Next, start the (Backend) development server:
-```bash
-   pnpm run dev
-```
-The backend server runs on [http://localhost:8000](http://localhost:8000).
+
+The backend server runs on [http://localhost:8080](http://localhost:8080).
