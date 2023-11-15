@@ -35,6 +35,10 @@ public class Location {
     @NotBlank
     private String lga;
 
+    @NotNull(message= "LGA cannot be empty")
+    @NotBlank
+    private double cost;
+
     public LocationDto mapToDto() {
         LocationDto locationDto = new LocationDto();
         BeanUtils.copyProperties(this, locationDto);

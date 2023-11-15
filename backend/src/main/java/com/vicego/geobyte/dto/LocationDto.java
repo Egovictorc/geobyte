@@ -14,4 +14,5 @@ public class LocationDto {
     private String country;
     private String state;
     private String lga;
+    private double cost;
 }

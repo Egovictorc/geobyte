@@ -34,47 +34,34 @@ import {
   TableRow,
 } from "../../../components/ui/table"
 
-const data: Payment[] = [
+type LocationType = {id: string, country: string, state: string, lga: string, cost: number}
+
+const data: LocationType[] = [
   {
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    email: "ken99@yahoo.com",
+    id: "1",
+    country: "Nigeria",
+    state: "Anambra",
+    lga: "Awka South",
+    cost: 2000
   },
   {
-    id: "3u1reuv4",
-    amount: 242,
-    status: "success",
-    email: "Abe45@gmail.com",
+    id: "2",
+    country: "Nigeria",
+    state: "Lagos",
+    lga: "Nnewi",
+    cost: 5000
   },
   {
-    id: "derv1ws0",
-    amount: 837,
-    status: "processing",
-    email: "Monserrat44@gmail.com",
+    id: "3",
+    country: "Sout Africa",
+    state: "South Jonep",
+    lga: "Abrka",
+    cost: 10000
   },
-  {
-    id: "5kma53ae",
-    amount: 874,
-    status: "success",
-    email: "Silas22@gmail.com",
-  },
-  {
-    id: "bhqecj4p",
-    amount: 721,
-    status: "failed",
-    email: "carmella@hotmail.com",
-  },
+  
 ]
 
-export type Payment = {
-  id: string
-  amount: number
-  status: "pending" | "processing" | "success" | "failed"
-  email: string
-}
-
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<Location>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -95,38 +82,53 @@ export const columns: ColumnDef<Payment>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "status",
-    header: "Status",
+    accessorKey: "country",
+    header: "Country",
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("status")}</div>
+      <div className="capitalize">{row.getValue("country")}</div>
     ),
   },
   {
-    accessorKey: "email",
+    accessorKey: "state",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Email
+          State
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       )
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+    cell: ({ row }) => <div className="capitalize">{row.getValue("state")}</div>,
   },
   {
-    accessorKey: "amount",
+    accessorKey: "lga",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          LGA
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => <div className="lowercase">{row.getValue("lga")}</div>,
+  },
+  {
+    accessorKey: "cost",
     header: () => <div className="text-right">Amount</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"))
+      const cost = parseFloat(row.getValue("cost"))
 
-      // Format the amount as a dollar amount
+      // Format the cost as a dollar cost
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
-      }).format(amount)
+      }).format(cost)
 
       return <div className="text-right font-medium">{formatted}</div>
     },
@@ -135,7 +137,7 @@ export const columns: ColumnDef<Payment>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original
+      const {id }= row
 
       return (
         <DropdownMenu>
@@ -148,13 +150,12 @@ export const columns: ColumnDef<Payment>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText(id)}
             >
-              Copy payment ID
+              Copy Location ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>Edit Location</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
@@ -194,10 +195,10 @@ export function LocationTable() {
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          placeholder="Filter country..."
+          value={(table.getColumn("country")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("country")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />

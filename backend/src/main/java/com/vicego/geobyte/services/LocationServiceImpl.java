@@ -45,7 +45,7 @@ public class LocationServiceImpl implements LocationService{
     }
 
     @Override
-    public String deletetLocationById(UUID id) {
+    public String deleteLocationById(UUID id) {
         // check if location exist with the given id
         LocationDto existingLocation = findLocationById(id);
         locationRepository.deleteById(id);
@@ -53,7 +53,7 @@ public class LocationServiceImpl implements LocationService{
     }
 
     @Override
-    public LocationDto updatetLocationById(Location Location, UUID id) {
+    public LocationDto updateLocationById(Location Location, UUID id) {
         // check if location exist with the given id
         Optional<Location> optionalLocation = locationRepository.findById(id);
         if(optionalLocation.isPresent()) {

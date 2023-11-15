@@ -13,7 +13,7 @@ public interface LocationService {
 
     LocationDto findLocationById(UUID id);
 
-    String deletetLocationById(UUID id);
-    LocationDto updatetLocationById(Location Location, UUID id);
+    String deleteLocationById(UUID id);
+    LocationDto updateLocationById(Location Location, UUID id);
 
 }
