@@ -61,7 +61,7 @@ const data: LocationType[] = [
   
 ]
 
-export const columns: ColumnDef<Location>[] = [
+export const columns: ColumnDef<LocationType>[] = [
   {
     id: "select",
     header: ({ table }) => (

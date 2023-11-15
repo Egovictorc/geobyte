@@ -104,7 +104,8 @@ const ServiceDialog = ({ excerpts, title }: ServiceDialogProps) => {
   const iconClasses = "text-xl text-default-500 pointer-events-none flex-shrink-0";
 
 
-  return (<Dialog className={"dark:bg-slate-700 dark:text-slate-300"}>
+  return (
+  <Dialog >
     <DialogTrigger asChild>
       <Button className=" gap-x-1 mx-auto"
         color={"primary"}>
