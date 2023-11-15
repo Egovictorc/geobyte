@@ -1,8 +1,5 @@
-import React from 'react';
-import Select from "react-select"
 
-import { Input, InputProps } from "../ui/input";
-import { Label } from "../ui/label";
+import {  InputProps } from "../ui/input";
 import { Controller, useFormContext } from "react-hook-form";
 
 
@@ -18,7 +15,6 @@ const RHFSelectField = ({
   name,
   helperText,
   label,
-  placeholder,
   options,
 }: Props) => {
   const { control } = useFormContext();

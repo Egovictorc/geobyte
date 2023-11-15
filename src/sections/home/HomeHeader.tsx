@@ -1,9 +1,8 @@
-import React from "react";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CountUp from "react-countup";
 import {Link} from "react-router-dom";
 
-import {PATH_AUTH, PATH_PAGE} from "../../routes/paths";
+import {PATH_AUTH} from "../../routes/paths";
 import {Button, buttonVariants} from "../../components/ui/button";
 
 

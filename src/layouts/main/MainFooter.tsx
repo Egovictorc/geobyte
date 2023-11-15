@@ -63,7 +63,7 @@ const MainFooter = () => {
 
                         </article>
                         <div className="flex justify-between max-w-[200px] py-5 text-primary-500 dark:text-slate-300">
-                            {_socials.map(({icon, path, name, value}) => (
+                            {_socials.map(({icon, path, name}) => (
                                 <Link to={path} key={name} className="">
                                     <Iconify icon={icon} key={name}/>
                                 </Link>

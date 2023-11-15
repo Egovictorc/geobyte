@@ -1,4 +1,4 @@
-import {Icon, IconifyIcon, IconProps} from "@iconify/react";
+import {Icon,  IconProps} from "@iconify/react";
 import {cn} from "../../lib/utils";
 
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import {Textarea, TextareaProps} from "../ui/textarea";
 import {Label} from "../ui/label";
 import {Controller, useFormContext} from "react-hook-form";

@@ -9,7 +9,7 @@ const NavDesktop = () => {
   <Logo/>
   <div className="flex">
     {
-        navConfig.map( ({title, path}, index) => (
+        navConfig.map( ({title, path}) => (
             <Link to={path} key={title}  className={"hover:text-slate-300 hover:border-gray-300 ease-in-out duration-200 px-2 flex flex-nowrap items-center "}>
             {title}
             </Link>

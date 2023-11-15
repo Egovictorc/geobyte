@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import MainHeader from "../main/MainHeader";
 
 type Props = {

@@ -17,7 +17,7 @@ const NewLocationForm = () => {
 
     const countryNames = uniq(countries.map( c => (c.name)));
         
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+    const { enqueueSnackbar } = useSnackbar()
     const NewLocationSchema = Yup.object().shape({
         country: Yup.string()
             .required('Country is required'),
@@ -42,11 +42,10 @@ const NewLocationForm = () => {
     });
 
     const {
-        reset,
         setError,
         handleSubmit,
         watch,
-        formState: { errors, isSubmitting, isSubmitSuccessful },
+        formState: { errors, isSubmitting },
     } = methods;
     const selectedCountry = watch("country", "Nigeria");
     const rawStates = countries.find(({ name }) => name.toLowerCase() === selectedCountry.toLowerCase())?.states || [];

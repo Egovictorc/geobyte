@@ -1,7 +1,6 @@
-import React, { useState } from "react"
-import type { API_ERROR, UserProps } from '../../../../types';
+import type { API_ERROR } from '../../../../types';
 import * as Yup from 'yup';
-import { Link, redirect, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -17,9 +16,9 @@ import useAuthContext from "../../../context/useAuthContext";
 
 const LoginForm = () => {
     const navigate = useNavigate()
-    const { isAuthenticated, login } = useAuthContext();
+    const { login } = useAuthContext();
 
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+    const { enqueueSnackbar } = useSnackbar()
     const LoginSchema = Yup.object().shape({
         email: Yup.string()
             .required('Email is required')
@@ -42,11 +41,9 @@ const LoginForm = () => {
     });
 
     const {
-        reset,
         setError,
         handleSubmit,
-        watch,
-        formState: { errors, isSubmitting, isSubmitSuccessful },
+        formState: { errors, isSubmitting },
     } = methods;
 
 

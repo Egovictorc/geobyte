@@ -1,15 +1,11 @@
-import * as React from "react";
-import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
-  Link,
 } from "react-router-dom";
 
 import { HomePage } from "./pages"
 import { SignupPage, LoginPage } from "./pages/auth"
-import { PATH_AFTER_LOGIN, PATH_AUTH, PATH_DASHBOARD } from "./routes/paths";
+import {  PATH_AUTH, PATH_DASHBOARD } from "./routes/paths";
 import DeliveryLocations from "./pages/dashboard/Locations";
 import AuthContextProvider from "./context/AuthContext";
 import NewLocation from "./pages/dashboard/NewLocation";

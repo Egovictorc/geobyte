@@ -1,5 +1,4 @@
-"use client"
-import React, {HtmlHTMLAttributes} from 'react';
+import {HtmlHTMLAttributes} from 'react';
 
 import {cn} from "../../lib/utils";
 

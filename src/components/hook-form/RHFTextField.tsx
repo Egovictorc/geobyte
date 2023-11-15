@@ -1,6 +1,4 @@
-import React from 'react';
-import {Input, InputProps} from "../ui/input";
-import {Label} from "../ui/label";
+import {InputProps} from "../ui/input";
 import {Controller, useFormContext} from "react-hook-form";
 
 

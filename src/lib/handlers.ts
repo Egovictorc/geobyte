@@ -1,4 +1,3 @@
-import type { UserProps} from "../../types"
 import {PATH_API} from "../routes/paths";
 import axiosInstance from "./axiosInstance";
 

@@ -18,7 +18,7 @@ const SignupForm = () => {
 
     const {signup } = useAuthContext();
     const navigate = useNavigate()
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+    const { enqueueSnackbar } = useSnackbar()
     const SignupSchema = Yup.object().shape({
         firstName: Yup.string()
             .required("First Name is required"),
@@ -59,11 +59,9 @@ const SignupForm = () => {
     });
 
     const {
-        reset,
         setError,
         handleSubmit,
-        watch,
-        formState: { errors, isSubmitting, isSubmitSuccessful },
+        formState: { errors, isSubmitting },
     } = methods;
 
     const onSubmit: SubmitHandler<typeof defaultValues> = async (values) => {
