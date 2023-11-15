@@ -10,9 +10,14 @@ import { useSnackbar } from "notistack";
 // components
 import FormProvider, { RHFPasswordField, RHFTextField } from "../../../components/hook-form";
 // utils
-import { signup } from "../../../lib/handlers";
+import { PATH_AFTER_LOGIN } from '../../../routes/paths';
+import { useNavigate } from 'react-router-dom';
+import useAuthContext from '../../../context/useAuthContext';
 
 const SignupForm = () => {
+
+    const {signup } = useAuthContext();
+    const navigate = useNavigate()
     const { enqueueSnackbar, closeSnackbar } = useSnackbar()
     const SignupSchema = Yup.object().shape({
         firstName: Yup.string()
@@ -63,23 +68,25 @@ const SignupForm = () => {
 
     const onSubmit: SubmitHandler<typeof defaultValues> = async (values) => {
         console.log("values ", values)
-        signup({
-            firstName: values.firstName,
-            lastName: values.lastName,
-            email: values.email,
-            password: values.password,
-            role: "STAFF"
-        })
-            .catch((error) => {
-                const err = error as API_ERROR;
-                console.log("errors ", error)
-                // reset();
-                setError('afterSubmit', {
-                    ...err,
-                    message: err.message,
-                });
-                enqueueSnackbar({ message: err.message, variant: 'error' });
+        try {
+            signup(
+                 values.email,
+                values.firstName,
+                values.lastName,
+                values.password,
+                "STAFF"
+            )
+        } catch (error) {
+            const err = error as API_ERROR;
+            //reset();
+            setError('afterSubmit', {
+                ...err,
+                message: err.message,
             });
+            enqueueSnackbar({ message: err.message, variant: 'error' });
+        }
+
+        navigate(PATH_AFTER_LOGIN);
         // enqueueSnackbar(message);
         enqueueSnackbar('Account created successfully');
 

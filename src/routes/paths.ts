@@ -27,16 +27,15 @@ export const PATH_API = {
         myAccount: path(API_ROOT, `/auth/my-account`),
         createAccount: path(API_ROOT, '/auth/create-account'),
     },
+    locations: {
+        root: path(API_ROOT, '/locations'),
+        get: (email: string) => path(API_ROOT, `/users/${email}`),
+    },
     users: {
         root: path(API_ROOT, '/users'),
         get: (email: string) => path(API_ROOT, `/users/${email}`),
     },
-    staff: {
-        root: path(API_ROOT, '/staff'),
-        get: (email: string) => path(API_ROOT, `/staff/${email}`),
-        auth: (email: string, password: string) => path(API_ROOT, `/staff/${email}`),
-
-    },
+    
 }
 
 export const PATH_DASHBOARD = {

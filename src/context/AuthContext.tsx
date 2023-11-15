@@ -15,8 +15,9 @@ export const AuthContext = createContext<({
     signup: (
         email: string,
         password: string,
-        first_name: string,
-        last_name: string,
+        firstName: string,
+        lastName: string,
+        role: string,
     ) => void;
     logout: () => void
 } & typeof initState) | null>(null)
@@ -78,10 +79,11 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     }, [])
 
     const signup = useCallback(async (email: string,
+        firstName: string, lastName: string,
         password: string,
-        firstName: string,
-        lastName: string,) => {
-        const response = await axiosInstance.post(PATH_API.users.root, { email, password, firstName, lastName });
+        role: string
+        ) => {
+        const response = await axiosInstance.post(PATH_API.users.root, { email, password, firstName, lastName, role });
         console.log("data  ", response.data)
         // const {user, accessToken} = response.data;
         dispatch({
