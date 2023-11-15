@@ -69,7 +69,7 @@ const NewLocationForm = () => {
     };
 
     return (
-        <>
+        <div className="container max-w-xl">
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 {!!errors.afterSubmit && (<p className={"text-red-500 mb-2"}>{errors.afterSubmit.message} </p>)}
                 <RHFSelectField name="country" label="Country" placeholder={"Nigeria"} options={countryNames} />
@@ -90,7 +90,7 @@ const NewLocationForm = () => {
                 </button>
 
             </FormProvider>
-        </>
+        </div>
     );
 };
 

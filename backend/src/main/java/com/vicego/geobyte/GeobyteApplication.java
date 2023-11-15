@@ -23,7 +23,7 @@ public class GeobyteApplication {
 				registry.addMapping("/**")
 						.allowedMethods("GET", "POST", "PUT", "DELETE")
 						//.allowedHeaders("*")  // Allowed HTTP methods;
-						.allowedOrigins("http://localhost:5173");
+						.allowedOrigins("http://localhost:5173", "https://egovictor-geobyte.netlify.app");
 			}
 		};
 	}
