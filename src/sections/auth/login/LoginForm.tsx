@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import type { API_ERROR } from '../../../../types';
+import type { API_ERROR, UserProps } from '../../../../types';
 import * as Yup from 'yup';
-import { Link, redirect, Navigate} from "react-router-dom";
+import { Link, redirect, Navigate, useNavigate } from "react-router-dom";
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -11,12 +11,14 @@ import { useSnackbar } from "notistack";
 import FormProvider, { RHFPasswordField, RHFTextField } from "../../../components/hook-form";
 import { PATH_AFTER_LOGIN, PATH_AUTH } from "../../../routes/paths";
 import { Iconify } from "../../../components/iconify";
-import { login } from '../../../lib/handlers';
+// import { login } from '../../../lib/handlers';
+import useAuthContext from "../../../context/useAuthContext";
 
 
 const LoginForm = () => {
+    const navigate = useNavigate()
+    const { isAuthenticated, login } = useAuthContext();
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const { enqueueSnackbar, closeSnackbar } = useSnackbar()
     const LoginSchema = Yup.object().shape({
         email: Yup.string()
@@ -49,20 +51,19 @@ const LoginForm = () => {
 
 
     const onSubmit: SubmitHandler<typeof defaultValues> = async (values) => {
-        login(values.email, values.password)
-            .then(res => {
-                enqueueSnackbar('login success');
-                setIsLoggedIn(true);
-            })
-            .catch((error) => {
-                const err = error as API_ERROR;
-                //reset();
-                setError('afterSubmit', {
-                    ...err,
-                    message: err.message,
-                });
-                enqueueSnackbar({ message: err.message, variant: 'error' });
-            })
+        try {
+            await login(values.email, values.password)
+        } catch (error) {
+            const err = error as API_ERROR;
+            //reset();
+            setError('afterSubmit', {
+                ...err,
+                message: err.message,
+            });
+            enqueueSnackbar({ message: err.message, variant: 'error' });
+        }
+
+        navigate(PATH_AFTER_LOGIN);
         //console.log("data ", user)
         // enqueueSnackbar(message);
     };
@@ -92,7 +93,6 @@ const LoginForm = () => {
                     {isSubmitting && <Iconify icon={"line-md:loading-twotone-loop"} width={20} />}
                 </button>
 
-            { isLoggedIn && <Navigate to="/dashboard/locations" /> }
             </FormProvider>
         </>
     );

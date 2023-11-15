@@ -26,7 +26,7 @@ Navigate to Backend directory inside the Project directory
    cd geobyte/backend
 ```  
 
-Next Install Project (Backend) dependencies
+Next start the backend server
 ```bash
    mvn spring-boot:run
 ```

@@ -40,6 +40,10 @@ export const PATH_API = {
 }
 
 export const PATH_DASHBOARD = {
+    locations: {
+        root: "/dashboard/locations",
+        new: path("/dashboard", "/new-location")
+    },
     //root: "/dashboard",
     root: "/dashboard/locations",
     user: {

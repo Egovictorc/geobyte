@@ -89,5 +89,6 @@ public class UserServiceImpl implements UserService {
             throw new AuthException("Incorrect Username / Password");
         }
         throw new UserNotFoundException("User does not exist");
+
     }
 }

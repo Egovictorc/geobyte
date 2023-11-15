@@ -5,7 +5,9 @@ import {Controller, useFormContext} from "react-hook-form";
 
 
 interface Props extends InputProps {
-    label: string,
+    label: string | {
+      name: string, description: string
+    },
     helperText?: string;
 }
 
